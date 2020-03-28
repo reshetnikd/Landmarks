@@ -18,7 +18,7 @@ struct HikeDetail: View {
     ]
     
     var body: some View {
-        return VStack {
+         return VStack {
             HikeGraph(hike: hike, path: dataToShow)
                 .frame(height: 200)
             
@@ -42,6 +42,6 @@ struct HikeDetail: View {
 
 struct HikeDetail_Previews: PreviewProvider {
     static var previews: some View {
-        HikeDetail(hike: hikeData[0])
+        HikeDetail(hike: hikeData[1])
     }
 }

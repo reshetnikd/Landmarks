@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct CategoryHome: View {
+    @EnvironmentObject var userData: UserData
     @State var showingProfile = false
     
     var categories: [String: [Landmark]] {
@@ -52,7 +53,8 @@ struct CategoryHome: View {
             .navigationBarTitle(Text("Featured"))
             .navigationBarItems(trailing: profileButton)
             .sheet(isPresented: $showingProfile) {
-                Text("User Profile")
+                ProfileHost()
+                    .environmentObject(self.userData)
             }
         }
     }
