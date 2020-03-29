@@ -47,7 +47,7 @@ struct HikeGraph: View {
     var body: some View {
         let data = hike.observations
         let overallRange = rangeOfRanges(data.lazy.map { $0[keyPath: self.path] })
-        let maxMagnitude = data.map { magnitude(of: $0[keyPath: path]) }.max()!
+        let maxMagnitude = data.map { magnitude(of: $0[keyPath: self.path]) }.max()!
         let heightRatio = (1 - CGFloat(maxMagnitude / magnitude(of: overallRange))) / 2
 
         return GeometryReader { proxy in
@@ -57,10 +57,11 @@ struct HikeGraph: View {
                         index: index,
                         height: proxy.size.height,
                         range: data[index][keyPath: self.path],
-                        overallRange: overallRange)
+                        overallRange: overallRange
+                    )
                     .colorMultiply(self.color)
                     .transition(.slide)
-                        .animation(.ripple(index: index))
+                    .animation(.ripple(index: index))
                 }
                 .offset(x: 0, y: proxy.size.height * heightRatio)
             }

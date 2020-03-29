@@ -19,9 +19,9 @@ struct CategoryHome: View {
         )
     }
     
-    var featured: [Landmark] {
-        landmarkData.filter { $0.isFeatured }
-    }
+//    var featured: [Landmark] {
+//        landmarkData.filter { $0.isFeatured }
+//    }
     
     var profileButton: some View {
         Button(action: { self.showingProfile.toggle() }) {
@@ -35,11 +35,13 @@ struct CategoryHome: View {
     var body: some View {
         NavigationView {
             List {
-                FeaturedLandmarks(landmarks: featured)
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipped()
-                    .listRowInsets(EdgeInsets())
+//                FeaturedLandmarks(landmarks: featured)
+//                    .scaledToFill()
+//                    .frame(height: 200)
+//                    .clipped()
+//                    .listRowInsets(EdgeInsets())
+                PageView(features.map { FeatureCard(landmark: $0) })
+                .aspectRatio(3/2, contentMode: .fit)
                 
                 ForEach(categories.keys.sorted(), id: \.self) { key in
                     CategoryRow(categoryName: key, items: self.categories[key]!)
